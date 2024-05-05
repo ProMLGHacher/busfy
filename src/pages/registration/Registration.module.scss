@@ -1,0 +1,79 @@
+.login {
+    background-image: url('/backround.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+
+    min-width: 500px;
+}
+
+.codeForm {
+    position: relative;
+    width: 100%;
+}
+
+.codeButton {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    height: 100%;
+}
+
+.codeInput {
+    height: 100%;
+}
+
+.resetPassword {
+    margin-top: 14px;
+}
+
+.loginTitle {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.loginDescription {
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.loginFooterLink {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+

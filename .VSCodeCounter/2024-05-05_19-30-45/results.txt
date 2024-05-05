@@ -1,0 +1,121 @@
+Date : 2024-05-05 19:30:45
+Directory : c:\Users\araik\OneDrive\Документы\work\busfy\src
+Total : 59 files,  1327 codes, 2 comments, 238 blanks, all 1567 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript JSX |         19 |        562 |          0 |         88 |        650 |
+| TypeScript     |         11 |        395 |          2 |         58 |        455 |
+| SCSS           |         12 |        300 |          0 |         71 |        371 |
+| XML            |         16 |         53 |          0 |         15 |         68 |
+| CSS            |          1 |         17 |          0 |          6 |         23 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                         | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                            |         59 |      1,327 |          2 |        238 |      1,567 |
+| . (Files)                                                                                                                    |          3 |         27 |          1 |          9 |         37 |
+| app                                                                                                                          |          4 |         90 |          0 |         12 |        102 |
+| app\router                                                                                                                   |          2 |         77 |          0 |          9 |         86 |
+| app\store                                                                                                                    |          2 |         13 |          0 |          3 |         16 |
+| assets                                                                                                                       |         16 |         53 |          0 |         15 |         68 |
+| features                                                                                                                     |          4 |        260 |          0 |         34 |        294 |
+| features\authorization                                                                                                       |          4 |        260 |          0 |         34 |        294 |
+| pages                                                                                                                        |         21 |        606 |          0 |        117 |        723 |
+| pages\home                                                                                                                   |         12 |        259 |          0 |         54 |        313 |
+| pages\home (Files)                                                                                                           |          2 |        119 |          0 |         21 |        140 |
+| pages\home\recomendations                                                                                                    |         10 |        140 |          0 |         33 |        173 |
+| pages\home\recomendations (Files)                                                                                            |          2 |         44 |          0 |         10 |         54 |
+| pages\home\recomendations\audioRecomendation                                                                                 |          2 |         21 |          0 |          5 |         26 |
+| pages\home\recomendations\imageRecomendation                                                                                 |          1 |          9 |          0 |          3 |         12 |
+| pages\home\recomendations\model3dRecomendation                                                                               |          1 |         29 |          0 |          4 |         33 |
+| pages\home\recomendations\textRecomendation                                                                                  |          2 |         22 |          0 |          6 |         28 |
+| pages\home\recomendations\videoRecomendation                                                                                 |          2 |         15 |          0 |          5 |         20 |
+| pages\login                                                                                                                  |          2 |         91 |          0 |         17 |        108 |
+| pages\main                                                                                                                   |          2 |         96 |          0 |         16 |        112 |
+| pages\profile                                                                                                                |          2 |         17 |          0 |          6 |         23 |
+| pages\registration                                                                                                           |          2 |        121 |          0 |         21 |        142 |
+| pages\test                                                                                                                   |          1 |         22 |          0 |          3 |         25 |
+| shared                                                                                                                       |         11 |        291 |          1 |         51 |        343 |
+| shared\api                                                                                                                   |          3 |        113 |          1 |         20 |        134 |
+| shared\api (Files)                                                                                                           |          1 |         51 |          1 |          9 |         61 |
+| shared\api\contentCategory                                                                                                   |          1 |         20 |          0 |          5 |         25 |
+| shared\api\posts                                                                                                             |          1 |         42 |          0 |          6 |         48 |
+| shared\consts                                                                                                                |          1 |         75 |          0 |         14 |         89 |
+| shared\lib                                                                                                                   |          1 |          9 |          0 |          0 |          9 |
+| shared\lib\classNames                                                                                                        |          1 |          9 |          0 |          0 |          9 |
+| shared\ui                                                                                                                    |          6 |         94 |          0 |         17 |        111 |
+| shared\ui\button                                                                                                             |          2 |         23 |          0 |          4 |         27 |
+| shared\ui\input                                                                                                              |          2 |         49 |          0 |          9 |         58 |
+| shared\ui\loader                                                                                                             |          2 |         22 |          0 |          4 |         26 |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                     | language       | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\app\router\Router.tsx                                                       | TypeScript JSX |         58 |          0 |          6 |         64 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\app\router\routes.tsx                                                       | TypeScript JSX |         19 |          0 |          3 |         22 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\app\store\store.ts                                                          | TypeScript     |          9 |          0 |          2 |         11 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\app\store\storeHooks.ts                                                     | TypeScript     |          4 |          0 |          1 |          5 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\dots.svg                                                             | XML            |          5 |          0 |          1 |          6 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\eye.svg                                                              | XML            |          4 |          0 |          1 |          5 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\favourite-active.svg                                                 | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\favourite.svg                                                        | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\folder.svg                                                           | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\heart.svg                                                            | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\home.svg                                                             | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\lock.svg                                                             | XML            |          4 |          0 |          1 |          5 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\mail.svg                                                             | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\plus-white.svg                                                       | XML            |          4 |          0 |          1 |          5 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\plus.svg                                                             | XML            |          4 |          0 |          1 |          5 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\presons.svg                                                          | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\react.svg                                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\search.svg                                                           | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\settings.svg                                                         | XML            |          3 |          0 |          1 |          4 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\assets\user.svg                                                             | XML            |          4 |          0 |          1 |          5 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\features\authorization\authSlice.ts                                         | TypeScript     |        146 |          0 |         19 |        165 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\features\authorization\confirmSignUpThunk.ts                                | TypeScript     |         44 |          0 |          6 |         50 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\features\authorization\loginThunk.ts                                        | TypeScript     |         45 |          0 |          5 |         50 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\features\authorization\signUpThunk.ts                                       | TypeScript     |         25 |          0 |          4 |         29 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\index.css                                                                   | CSS            |         17 |          0 |          6 |         23 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\main.tsx                                                                    | TypeScript JSX |         10 |          0 |          2 |         12 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\Home.module.scss                                                 | SCSS           |         30 |          0 |          8 |         38 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\Home.tsx                                                         | TypeScript JSX |         89 |          0 |         13 |        102 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\Recomendation.module.scss                         | SCSS           |         24 |          0 |          7 |         31 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\Recomendation.tsx                                 | TypeScript JSX |         20 |          0 |          3 |         23 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\audioRecomendation\AudioRecomendation.module.scss | SCSS           |          7 |          0 |          2 |          9 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\audioRecomendation\AudioRecomendation.tsx         | TypeScript JSX |         14 |          0 |          3 |         17 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\imageRecomendation\ImageRecomendation.tsx         | TypeScript JSX |          9 |          0 |          3 |         12 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\model3dRecomendation\ModelRecomendation.tsx       | TypeScript JSX |         29 |          0 |          4 |         33 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\textRecomendation\TextRecomendation.module.scss   | SCSS           |         10 |          0 |          3 |         13 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\textRecomendation\TextRecomendation.tsx           | TypeScript JSX |         12 |          0 |          3 |         15 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\videoRecomendation\VideoRecomendation.module.scss | SCSS           |          3 |          0 |          2 |          5 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\home\recomendations\videoRecomendation\VideoRecomendation.tsx         | TypeScript JSX |         12 |          0 |          3 |         15 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\login\Login.module.scss                                               | SCSS           |         52 |          0 |         11 |         63 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\login\Login.tsx                                                       | TypeScript JSX |         39 |          0 |          6 |         45 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\main\Main.module.scss                                                 | SCSS           |         49 |          0 |         12 |         61 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\main\Main.tsx                                                         | TypeScript JSX |         47 |          0 |          4 |         51 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\profile\Profile.module.scss                                           | SCSS           |          0 |          0 |          1 |          1 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\profile\Profile.tsx                                                   | TypeScript JSX |         17 |          0 |          5 |         22 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\registration\Registration.module.scss                                 | SCSS           |         66 |          0 |         14 |         80 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\registration\Registration.tsx                                         | TypeScript JSX |         55 |          0 |          7 |         62 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\pages\test\Test.tsx                                                         | TypeScript JSX |         22 |          0 |          3 |         25 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\api\api.ts                                                           | TypeScript     |         51 |          1 |          9 |         61 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\api\contentCategory\getContentCategories.ts                          | TypeScript     |         20 |          0 |          5 |         25 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\api\posts\recomendations.ts                                          | TypeScript     |         42 |          0 |          6 |         48 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\consts\images.tsx                                                    | TypeScript JSX |         75 |          0 |         14 |         89 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\lib\classNames\classNames.ts                                         | TypeScript     |          9 |          0 |          0 |          9 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\ui\button\Button.module.scss                                         | SCSS           |         14 |          0 |          2 |         16 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\ui\button\Button.tsx                                                 | TypeScript JSX |          9 |          0 |          2 |         11 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\ui\input\Input.module.scss                                           | SCSS           |         29 |          0 |          7 |         36 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\ui\input\Input.tsx                                                   | TypeScript JSX |         20 |          0 |          2 |         22 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\ui\loader\Loader.module.scss                                         | SCSS           |         16 |          0 |          2 |         18 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\shared\ui\loader\Loader.tsx                                                 | TypeScript JSX |          6 |          0 |          2 |          8 |
+| c:\Users\araik\OneDrive\Документы\work\busfy\src\vite-env.d.ts                                                               | TypeScript     |          0 |          1 |          1 |          2 |
+| Total                                                                                                                        |                |      1,327 |          2 |        238 |      1,567 |
++------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

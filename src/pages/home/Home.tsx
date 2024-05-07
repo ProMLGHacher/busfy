@@ -1,13 +1,13 @@
 import { useEffect, useState, useMemo, useLayoutEffect } from 'react'
 import styles from './Home.module.scss'
-import { PostType, Recomendation, RecomendationsResponse, getRecomendations } from '../../shared/api/posts/recomendations'
-import { ImageRecomendation } from './recomendations/imageRecomendation/ImageRecomendation'
-import ModelRecomendation from './recomendations/model3dRecomendation/ModelRecomendation'
-import { VideoRecomendation } from './recomendations/videoRecomendation/VideoRecomendation'
-import { AudioRecomendation } from './recomendations/audioRecomendation/AudioRecomendation'
-import { TextRecomendation } from './recomendations/textRecomendation/TextRecomendation'
+import { PostType, Post, RecomendationsResponse, getRecomendations } from '../../shared/api/posts/recomendations'
 import { ContentCategory, getContentCategories } from '../../shared/api/contentCategory/getContentCategories'
 import { classNames } from '../../shared/lib/classNames/classNames'
+import { AudioRecomendation } from '../../widgets/recomendations/audioRecomendation/AudioRecomendation'
+import { ImageRecomendation } from '../../widgets/recomendations/imageRecomendation/ImageRecomendation'
+import ModelRecomendation from '../../widgets/recomendations/model3dRecomendation/ModelRecomendation'
+import { TextRecomendation } from '../../widgets/recomendations/textRecomendation/TextRecomendation'
+import { VideoRecomendation } from '../../widgets/recomendations/videoRecomendation/VideoRecomendation'
 
 const Home = () => {
 
@@ -35,7 +35,7 @@ const Home = () => {
   }, []);
 
   const columns = useMemo(() => {
-    const cols: Array<Array<Recomendation>> = Array.from({ length: numColumns }, () => []);
+    const cols: Array<Array<Post>> = Array.from({ length: numColumns }, () => []);
     recomendations?.items.forEach((item, index) => {
       cols[index % numColumns].push(item);
     })

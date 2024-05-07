@@ -10,7 +10,7 @@ export enum PostType {
     Other = "Other"
 }
 
-export type Recomendation = {
+export type Post = {
     "id": string,
     "description": string | null,
     "text": string | null,
@@ -37,7 +37,7 @@ export type RecomendationsResponse = {
     "count": number,
     "offset": number,
     "total": number,
-    "items": Recomendation[]
+    "items": Post[]
 }
 
 export const getRecomendations = async (count: number = 9999, offset: number = 0, categoryName?: string | undefined): Promise<RecomendationsResponse> => {

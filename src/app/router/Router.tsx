@@ -6,12 +6,17 @@ import { mainNavigation } from "./routes"
 import { Registration } from "../../pages/registration/Registration"
 import { useAppSelector } from "../store/storeHooks"
 import { UserRole } from "../../features/authorization/authSlice"
+import { DetailedPost } from "../../pages/detailedPost/DetailedPost"
 
 const mainRouter = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
         children: [
+            {
+                path: '/post/:id',
+                element: <DetailedPost />
+            },
             ...mainNavigation.filter(e => !e.isAuth)
         ]
     },
@@ -38,6 +43,10 @@ const userRouter = createBrowserRouter([
         path: "/",
         element: <Main />,
         children: [
+            {
+                path: '/post/:id',
+                element: <DetailedPost />
+            },
             ...mainNavigation
         ]
     },

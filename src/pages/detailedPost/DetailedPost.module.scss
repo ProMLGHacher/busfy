@@ -1,0 +1,16 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    gap: 40px;
+}
+
+.similar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.preview {
+    border-radius: 50px;
+    overflow: hidden;
+}

@@ -10,6 +10,7 @@ type ConfirmSignUpFullfiled = {
       "refreshToken": string
     },
     "profile": {
+        id: string,
       "email": string,
       "role": UserRole,
       "urlIcon": string | null,

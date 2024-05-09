@@ -14,3 +14,47 @@
     border-radius: 50px;
     overflow: hidden;
 }
+
+.contentInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.sub {
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: var(--background-color-primary);
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.like {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 16px;
+    background-color: #F2F2F2;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    overflow: hidden;
+    padding-right: 26px;
+    color: #8C8C8C;
+
+    &>div {
+        padding: 9px;
+        background-color: var(--background-color-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1/1;
+    }
+}

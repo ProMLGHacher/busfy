@@ -5,20 +5,21 @@ import { UserRole, AccountStatus } from "./authSlice";
 
 type LoginFullfiled = {
     "tokenPair": {
-      "accessToken": string,
-      "refreshToken": string
+        "accessToken": string,
+        "refreshToken": string
     },
     "profile": {
-      "email": string,
-      "role": UserRole,
-      "urlIcon": string | null,
-      "urlBackgroundImage": string | null,
-      "nickname": string,
-      "bio": string | null,
-      "userTag": string | null,
-      "accountStatus": AccountStatus
+        id: string
+        "email": string,
+        "role": UserRole,
+        "urlIcon": string | null,
+        "urlBackgroundImage": string | null,
+        "nickname": string,
+        "bio": string | null,
+        "userTag": string | null,
+        "accountStatus": AccountStatus
     }
-  }
+}
 
 type LoginPayload = {
     email: string;
@@ -31,7 +32,6 @@ export const loginThunk = createAsyncThunk<
     { rejectValue: string }
 >("logThunk", async (data, { rejectWithValue }) => {
     try {
-        await new Promise((resolve) => setTimeout(resolve, 1000))
         const result = await $api.post<LoginFullfiled>('/api/signin', data)
         return result.data
     } catch (error) {

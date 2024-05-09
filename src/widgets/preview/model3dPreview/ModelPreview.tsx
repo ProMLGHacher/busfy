@@ -1,7 +1,7 @@
 import { OrbitControls } from '@react-three/drei'
 import { useLoader, Canvas } from '@react-three/fiber'
 import { FBXLoader } from 'three/examples/jsm/Addons.js'
-import { Post as RecomendationType } from "../../../shared/api/posts/recomendations"
+import { Post as RecomendationType } from "../../../features/api/posts/recomendations"
 import styles from './ModelPreciew.module.scss'
 
 const ModelPreview = (props: RecomendationType) => {
@@ -13,7 +13,7 @@ const ModelPreview = (props: RecomendationType) => {
             className={styles.wrp}
             camera={{ position: [0, 100, 100], fov: 40, rotation: [0, 1, 0] }}
         >
-            <color attach="background" args={['#444']} />
+            <color attach="background" args={['#D9D9D9']} />
             <ambientLight intensity={1} />
             <directionalLight intensity={0.5} position={[1, 1, 1]} />
             <mesh position={[0, 0, 0]} scale={0.1} >

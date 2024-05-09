@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo, useLayoutEffect } from 'react'
 import styles from './Home.module.scss'
-import { PostType, Post, RecomendationsResponse, getRecomendations } from '../../shared/api/posts/recomendations'
-import { ContentCategory, getContentCategories } from '../../shared/api/contentCategory/getContentCategories'
+import { PostType, Post, RecomendationsResponse, getRecomendations } from '../../features/api/posts/recomendations'
+import { ContentCategory, getContentCategories } from '../../features/api/contentCategory/getContentCategories'
 import { classNames } from '../../shared/lib/classNames/classNames'
 import { AudioRecomendation } from '../../widgets/recomendations/audioRecomendation/AudioRecomendation'
 import { ImageRecomendation } from '../../widgets/recomendations/imageRecomendation/ImageRecomendation'
@@ -55,6 +55,7 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
+    if (!selectedCategory) return
     getRecomendations(9999, 0, selectedCategory?.name).then((response) => setRecomendations(response))
   }, [selectedCategory])
 

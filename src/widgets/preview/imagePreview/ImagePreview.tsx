@@ -1,4 +1,4 @@
-import { Post as RecomendationType } from "../../../shared/api/posts/recomendations"
+import { Post as RecomendationType } from "../../../features/api/posts/recomendations"
 
 export const ImagePreview = (props: RecomendationType) => {
     return (

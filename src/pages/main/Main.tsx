@@ -8,6 +8,9 @@ import { User } from '../../shared/consts/images'
 export const Main = () => {
 
     const user = useAppSelector(state => state.auth.user)
+    const token = useAppSelector(state => state.auth.tokens.accessToken)
+
+    const navigation = token ? mainNavigation : mainNavigation.filter(e => !e.isAuth)
 
     return (
         <div className={styles.wrapper}>
@@ -26,7 +29,7 @@ export const Main = () => {
                     <h2>Busfy</h2>
                 </div>
                 <div className={styles.navigationItems}>
-                    {mainNavigation.map((item) => (
+                    {navigation.map((item) => (
                         <NavLink to={item.path} className={({ isActive }) => {
                             return classNames(styles.navigationItem, {
                                 [styles.navigationItemActive]: isActive

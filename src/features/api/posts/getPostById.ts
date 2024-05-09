@@ -1,4 +1,4 @@
-import { $api } from "../api"
+import { $api } from "../../../shared/api/api"
 import { Post } from "./recomendations"
 
 export const getPostById = async (id: string): Promise<Post> => {

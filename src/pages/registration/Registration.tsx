@@ -38,9 +38,9 @@ export const Registration = () => {
         <h1 className={styles.loginTitle}>Создать аккаунт</h1>
         <p className={styles.loginDescription}>Создайте аккаунт чтобы войти в приложение</p>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <Input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Имя" icon={<User />} />
-          <Input value={mail} onChange={(e) => setMail(e.target.value)} type="email" placeholder="Email" icon={<Mail />} />
-          <Input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Пароль" icon={<Lock />} />
+          <Input style={{width: '100%'}} value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Имя" icon={<User />} />
+          <Input style={{width: '100%'}} value={mail} onChange={(e) => setMail(e.target.value)} type="email" placeholder="Email" icon={<Mail />} />
+          <Input style={{width: '100%'}} value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Пароль" icon={<Lock />} />
           <div className={styles.codeForm}>
             <Input className={styles.codeInput} value={code} onChange={(e) => setCode(e.target.value)} type="text" placeholder="Код подтверждения" />
             <Button onClick={sendCode} className={styles.codeButton} type="button">

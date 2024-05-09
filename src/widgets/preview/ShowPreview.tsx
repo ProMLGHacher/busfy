@@ -1,4 +1,4 @@
-import { Post, PostType } from "../../shared/api/posts/recomendations"
+import { Post, PostType } from "../../features/api/posts/recomendations"
 import { AudioPreview } from "./audioPreview/AudioPreview"
 import { ImagePreview } from "./imagePreview/ImagePreview"
 import ModelPreview from "./model3dPreview/ModelPreview"

@@ -1,5 +1,5 @@
-import { AccountStatus, UserRole } from "../../../features/authorization/authSlice";
-import { $api } from "../api";
+import { AccountStatus, UserRole } from "../../authorization/authSlice";
+import { $api } from "../../../shared/api/api";
 
 export enum PostType {
     Text = "Text",
@@ -8,6 +8,12 @@ export enum PostType {
     Image = "Image",
     Model3D = "Model3D",
     Other = "Other"
+}
+
+export enum SubscriptionType {
+    Public = "Public",
+    Private = 'Private',
+    Single = 'Single'
 }
 
 export type Post = {
@@ -30,6 +36,7 @@ export type Post = {
         "userTag": string | null,
         "accountStatus": AccountStatus
     },
+    "subscriptionType": SubscriptionType,
     "hasEvaluated": boolean
 }
 

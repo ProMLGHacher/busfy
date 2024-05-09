@@ -4,9 +4,11 @@ import { Test } from "../../pages/test/Test"
 import { Login } from "../../pages/login/Login"
 import { mainNavigation } from "./routes"
 import { Registration } from "../../pages/registration/Registration"
-import { useAppSelector } from "../store/storeHooks"
+import { useAppDispatch, useAppSelector } from "../store/storeHooks"
 import { UserRole } from "../../features/authorization/authSlice"
 import { DetailedPost } from "../../pages/detailedPost/DetailedPost"
+import { useEffect, useState } from "react"
+import { getUserThunk } from "../../features/authorization/getUserThunk"
 
 const mainRouter = createBrowserRouter([
     {
@@ -62,11 +64,28 @@ const userRouter = createBrowserRouter([
 
 export const RouterApp = () => {
 
-    const user = useAppSelector(state => state.auth.user)
+    const [loading, setLoading] = useState(true)
+
+    const user = useAppSelector(state => state.auth)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getUserThunk())
+        .then(_ => {
+            setLoading(false)
+        })
+        .catch(_ => {
+            alert('плоха дела')
+        })
+    }, [])
+
+
+    if (loading) return <>Loading...</>
 
     return (
         <>
-            {user ? user?.role === UserRole.Admin ? <RouterProvider router={mainRouter} /> : <RouterProvider router={userRouter} /> : <RouterProvider router={mainRouter} />}
+            {user.tokens.accessToken ? user.user?.role === UserRole.Admin ? <RouterProvider router={mainRouter} /> : <RouterProvider router={userRouter} /> : <RouterProvider router={mainRouter} />}
         </>
     )
 }

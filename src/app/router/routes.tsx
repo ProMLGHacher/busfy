@@ -1,14 +1,22 @@
 import { Profile } from "../../pages/profile/Profile";
-import { Home, User } from "../../shared/consts/images";
+import { Home, Plus, User } from "../../shared/consts/images";
 import HomePage from "../../pages/home/Home";
+import NewPost from "../../pages/newPost/NewPost";
 
 export const mainNavigation = [
     {
         title: 'Главная',
-        path: '/home',
+        path: '/',
         icon: <Home />,
         element: <HomePage />,
         isAuth: false
+    },
+    {
+        title: 'Новый пост',
+        path: '/newPost',
+        icon: <Plus />,
+        element: <NewPost />,
+        isAuth: true
     },
     {
         title: 'Профиль',

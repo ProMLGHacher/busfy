@@ -41,7 +41,11 @@ export const Main = () => {
                     ))}
                 </div>
                 <div className={styles.user}>
-                    {user?.urlIcon ? <img src={user?.urlIcon} alt="avatar" /> : <User />}
+                    {user?.urlIcon ? <img style={{
+                        width: '50px',
+                        height: '50px',
+                        borderRadius: '50%'
+                    }} src={user?.urlIcon} alt="avatar" /> : <User />}
                     <Link className={styles.userLink} to={user ? '/profile' : '/login'}>{user?.nickname || 'Войти'}</Link>
                 </div>
             </nav>

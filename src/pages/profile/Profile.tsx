@@ -122,7 +122,15 @@ export const Profile = () => {
           formData.append('file', e.target.files[0])
           $api.post('/api/upload/profile-background', formData).then(_ => dispatch(getUserThunk()))
         }} name="photo" id="upload-photo" className={styles.coverUpload} />
-        {user?.urlIcon ? <img className={styles.avatar} src={user?.urlIcon} alt="" /> : <User className={classNames(styles.avatar, undefined, [styles.noavatar])} />}
+        <div className={styles.icon}> 
+          {user?.urlIcon ? <img className={styles.avatar} src={user?.urlIcon} alt="" /> : <User className={classNames(styles.avatar, undefined, [styles.noavatar])} />}
+          <input type="file" accept='image/*' onChange={e => {
+            if (!e.target.files?.[0]) return
+            const formData = new FormData()
+            formData.append('file', e.target.files[0])
+            $api.post('/api/upload/profile', formData).then(_ => dispatch(getUserThunk()))
+          }} name="photo" id="upload-photo" className={styles.coverUpload} />
+        </div>
       </div>
 
       <div className={styles.profileInfo}>

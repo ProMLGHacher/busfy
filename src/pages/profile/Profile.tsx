@@ -16,9 +16,13 @@ import { ImageRecomendation } from '../../widgets/recomendations/imageRecomendat
 import ModelRecomendation from '../../widgets/recomendations/model3dRecomendation/ModelRecomendation'
 import { TextRecomendation } from '../../widgets/recomendations/textRecomendation/TextRecomendation'
 import { VideoRecomendation } from '../../widgets/recomendations/videoRecomendation/VideoRecomendation'
+import { Subscriptions } from './components/Subscriptions'
 
 export const Profile = () => {
 
+
+  const user = useAppSelector(state => state.auth.user)
+  
   const { userId } = useParams()
 
 
@@ -61,7 +65,7 @@ export const Profile = () => {
     $api.get<RecomendationsResponse>('/api/tape/creator', {
       params: {
         count: 9999,
-        userId: userId
+        userId: userId || user?.id
       }
     })
       .then(e => setRecomendations(e.data))
@@ -74,7 +78,6 @@ export const Profile = () => {
 
 
 
-  const user = useAppSelector(state => state.auth.user)
 
   const dispatch = useAppDispatch()
 
@@ -176,6 +179,9 @@ export const Profile = () => {
             <Input value={tag} onChange={e => { setTag(e.target.value) }} style={{ width: '50%', marginBottom: '20px' }} />
             <p style={{ width: '50%', color: '#888' }}>Описание</p>
             <Input value={description} onChange={e => { setDescription(e.target.value) }} style={{ width: '50%', marginBottom: '20px' }} />
+
+
+            <Subscriptions />
           </div>
           :
           <div className={styles.recomendations} style={{ display: 'grid', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>

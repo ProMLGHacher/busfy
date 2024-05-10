@@ -2,17 +2,18 @@ import { classNames } from '../../lib/classNames/classNames'
 import styles from './Button.module.scss'
 
 export const Button = (
-    { children, type = 'button', className, onClick, disabled }:
+    { children, type = 'button', className, onClick, disabled, style }:
         {
             children: React.ReactNode,
             type?: 'button' | 'submit' | 'reset',
             className?: string,
             onClick?: () => void,
-            disabled?: boolean
+            disabled?: boolean,
+            style?: React.CSSProperties
         }
 ) => {
     return (
-        <button onClick={onClick} className={classNames(styles.button, {
+        <button onClick={onClick} style={style} className={classNames(styles.button, {
             [styles.disabled]: disabled
         }, [className])} type={type}>
             {children}

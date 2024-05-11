@@ -1,0 +1,75 @@
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.noavatar {
+    border-radius: 0%;
+}
+
+.accountHeader {
+    border-radius: 30px;
+    background-color: var(--background-color-primary);
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    max-height: 400px;
+    aspect-ratio: 16/9;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 40px;
+
+    position: relative;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.countInfoItem {
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--background-color-primary);
+    border-radius: 24px;
+    color: #888;
+    font-size: 20px;
+
+    & .usersImage {
+        width: 26px;
+        height: 26px;
+    }
+    & .likeImage {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.coverUpload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+}
+
+.editMode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.icon {
+    position: relative;
+}

@@ -48,6 +48,9 @@ $api.interceptors.response.use(
                     if (error.response?.status === 404) {
                         store.dispatch(logOut())
                     }
+                    if (error.response?.status === 400) {
+                        alert('Нет доступа')
+                    }
                 }
                 else {
                     store.dispatch(logOut())

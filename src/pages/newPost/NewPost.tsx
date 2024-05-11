@@ -15,7 +15,7 @@ const NewPost = () => {
   const [text, setText] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
-  const [subId, setSubId] = useState("")
+  const [subId, setSubId] = useState<string | undefined>()
 
   const handleDubmit = () => {
 
@@ -54,7 +54,6 @@ const NewPost = () => {
   useEffect(() => {
     $api.get<Sub[]>('/api/subscriptions-created', { params: { userId } }).then(e => {
       setMySubs(e.data)
-      setSubId(e.data[0].id)
     })
   }, [])
 
@@ -65,10 +64,11 @@ const NewPost = () => {
         flexDirection: 'column',
         gap: '20px'
       }}>
+        {file?.type}
         <div style={{ position: 'relative', minHeight: '300px', borderRadius: '20px', overflow: 'hidden', border: '1px solid #888', transition: 'opacity .3s', opacity: text ? 0.2 : 1 }}>
           {fileUrl && <img src={fileUrl} alt="" />}
           <p style={{ textAlign: 'center' }}>Выберите файл</p>
-          <input accept='image/*' style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', opacity: '0' }} type="file" onChange={e => {
+          <input style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', opacity: '0' }} type="file" onChange={e => {
             setFile(e.target.files?.[0])
           }} />
         </div>
@@ -108,6 +108,7 @@ const NewPost = () => {
               WebkitAppearance: 'none',
               MozAppearance: 'none'
             }}>
+              <option value={undefined}>Публичный</option>
             {mySubs?.map(e => <option value={e.id}>{e.type === SubType.Private ? "Приватный" : e.type === SubType.Public ? 'Публичный' : 'Единый'} на {e.countDays} дней за {e.price} рублей</option>)}
           </select>
         </div>

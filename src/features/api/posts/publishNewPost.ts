@@ -3,7 +3,7 @@ import { $api } from "../../../shared/api/api"
 export type NewPost = {
     description: string,
     text?: string,
-    subscriptionId: string,
+    subscriptionId?: string,
     isCommentingAllowed?: boolean,
     file?: File,
     category: string
@@ -11,10 +11,10 @@ export type NewPost = {
 
 export const publishNewPost = async ({ description, file, subscriptionId, text, category }: NewPost): Promise<boolean> => {
     try {
-        const res = await $api.post<string>(`/api/post`, {
+        const res = await $api.post<{ id: string }>(`/api/post`, {
             "description": description,
             "text": text || null,
-            "subscriptionId": subscriptionId,
+            "subscriptionId": subscriptionId || null,
             "isCommentingAllowed": true
         }, {
             params: {
@@ -23,14 +23,18 @@ export const publishNewPost = async ({ description, file, subscriptionId, text, 
         })
         if (!file) return false
 
+        console.log(res.data);
+
+
         const formData = new FormData()
         formData.append('file', file)
-        $api.post('/api/upload/post', formData, {
+        await $api.post('/api/upload/post', formData, {
             params: {
-                postId: res.data
+                "postId": res.data.id
             }
         })
     } catch (error) {
+        alert('хуй там')
         return false
     }
     return true

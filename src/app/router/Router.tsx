@@ -9,6 +9,7 @@ import { UserRole } from "../../features/authorization/authSlice"
 import { DetailedPost } from "../../pages/detailedPost/DetailedPost"
 import { useEffect, useState } from "react"
 import { getUserThunk } from "../../features/authorization/getUserThunk"
+import { Profile as UserProfile } from "../../pages/profile copy/Profile"
 
 const mainRouter = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const mainRouter = createBrowserRouter([
             {
                 path: '/post/:id',
                 element: <DetailedPost />
+            },
+            {
+                path: '/user/:userId',
+                element: <UserProfile />
             },
             ...mainNavigation.filter(e => !e.isAuth)
         ]
@@ -49,6 +54,10 @@ const userRouter = createBrowserRouter([
                 path: '/post/:id',
                 element: <DetailedPost />
             },
+            {
+                path: '/user/:userId',
+                element: <UserProfile />
+            },
             ...mainNavigation
         ]
     },
@@ -71,6 +80,10 @@ export const RouterApp = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        if (!user.tokens.refreshToken) {
+            setLoading(false)
+            return
+        }
         dispatch(getUserThunk())
         .then(_ => {
             setLoading(false)

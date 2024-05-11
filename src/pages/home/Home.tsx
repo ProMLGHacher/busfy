@@ -50,18 +50,25 @@ const Home = () => {
   useEffect(() => {
     getContentCategories().then((response) => {
       setContentCategories(response)
-      setSelectedCategory(response[0])
     })
   }, [])
 
   useEffect(() => {
-    if (!selectedCategory) return
     getRecomendations(9999, 0, selectedCategory?.name).then((response) => setRecomendations(response))
   }, [selectedCategory])
 
   return (
     <div className={styles.home}>
       <div className={styles.contentCategories}>
+        <div className={classNames(styles.contentCategory, {
+          [styles.selected]: !selectedCategory
+        })} onClick={() => {
+          console.log(';oasdijfo;asd');
+          setSelectedCategory(undefined)
+          
+        }}>
+          <p>Для тебя</p>
+        </div>
         {contentCategories.map((category, categoryIndex) => (
           <div key={categoryIndex} className={classNames(styles.contentCategory, {
             [styles.selected]: selectedCategory?.name === category.name

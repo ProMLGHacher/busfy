@@ -48,7 +48,11 @@ export type RecomendationsResponse = {
 }
 
 export const getRecomendations = async (count: number = 9999, offset: number = 0, categoryName?: string | undefined): Promise<RecomendationsResponse> => {
-    const response = !categoryName ? await $api.get<RecomendationsResponse>('/api/tape/recommendations', { params: { count, offset } }) : await $api.get<RecomendationsResponse>('/api/tape/category', { params: { count, offset, name: categoryName } })
+    const response =
+        !categoryName ?
+            await $api.get<RecomendationsResponse>('/api/tape/recommendations', { params: { count, offset } })
+            :
+            await $api.get<RecomendationsResponse>('/api/tape/category', { params: { count, offset, name: categoryName } })
     return response.data
 }
 

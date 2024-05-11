@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styles from './DetailedPost.module.scss'
 import { useEffect, useState } from 'react'
 import { Post, PostType, RecomendationsResponse, getRecomendations } from '../../features/api/posts/recomendations'
@@ -13,6 +13,8 @@ import { Heart, HeartFilled, Plus, User } from '../../shared/consts/images'
 import { Comment, getPostComments } from '../../features/api/getPostComments/getPostComments'
 import { $api } from '../../shared/api/api'
 import { getPostLikesCount } from '../../features/api/getPostLikesCount/getPostLikesCount'
+import { Input } from '../../shared/ui/input/Input'
+import { Button } from '../../shared/ui/button/Button'
 
 export const DetailedPost = () => {
 
@@ -22,7 +24,7 @@ export const DetailedPost = () => {
   const [hasEvaluated, setHasEvaluated] = useState(post?.hasEvaluated)
   const [similar, setSimilar] = useState<RecomendationsResponse>()
   const [comments, setComments] = useState<Comment[]>()
-  const [countLikes, setCountLikes] = useState<number>()
+  const [countLikes, setCountLikes] = useState<number>(0)
 
 
   useEffect(() => {
@@ -47,12 +49,12 @@ export const DetailedPost = () => {
       .then(e => {
         setHasEvaluated(e.data == 'Evaluated')
         setCountLikes(prev => {
-          if (prev) {
-            return e.data == 'Evaluated' ? prev + 1 : prev - 1
-          }
+          return e.data == 'Evaluated' ? prev + 1 : prev - 1
         })
       })
   }
+
+  const [comment, setComment] = useState("")
 
   return (
     <div className={styles.wrapper}>
@@ -61,25 +63,42 @@ export const DetailedPost = () => {
           {post && <ShowPreview videoControls {...post} />}
         </div>
         <div className={styles.contentInfo}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            {post?.profileCreator.urlIcon ? <img src={post?.profileCreator.urlIcon} alt="" /> : <User />}
+          <Link to={'/user/' + post?.profileCreator.id} style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'black' }}>
+            {post?.profileCreator.urlIcon ? <img style={{ width: '50px', height: '50px' }} src={post?.profileCreator.urlIcon} alt="" /> : <User />}
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <h5>{post?.profileCreator.nickname}</h5>
             </div>
-          </div>
+          </Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <button className={styles.sub}><Plus /></button>
+            {/* <div style={{position: 'relative'}}>
+              <button className={styles.sub}><Plus /></button>
+            </div> */}
             <button className={styles.like} onClick={like}>
               <div>{hasEvaluated ? <HeartFilled style={{ color: 'red', width: '22px', height: '22px' }} /> : <Heart style={{ width: '22px', height: '22px' }} />}</div>
               {countLikes}
             </button>
           </div>
         </div>
-        <p>{post?.description}</p>
+        <p style={{ marginTop: '10px' }}>{post?.description}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginTop: '40px', marginBottom: '20px' }}>
+          <Input value={comment} onChange={e => setComment(e.target.value)} placeholder='Комментарий' style={{ flex: 1 }} />
+          <Button onClick={() => {
+            if (!id) return
+            $api.post('/api/post/comment', { comment: comment }, { params: { postId: id } })
+              .then(_ => {
+                setComment('')
+                getPostComments(id).then(e => setComments(e))
+              })
+          }}>Отправить</Button>
+        </div>
         <div className={styles.comments}>
           {
-            comments?.map(comment => <div>
-              {comment.profileBody.urlIcon ? <img src={comment.profileBody.urlIcon} alt="" /> : <User />}
+            comments?.map(comment => <div style={{ display: 'flex', gap: '10px' }}>
+              {comment.profileBody.urlIcon ? <img style={{ width: '50px', height: '50px' }} src={comment.profileBody.urlIcon} alt="" /> : <User />}
+              <div>
+                <p>{comment.profileBody.nickname}</p>
+                <p>{comment.comment}</p>
+              </div>
             </div>)
           }
         </div>

@@ -55,7 +55,7 @@ export const Profile = () => {
   const columns = useMemo(() => {
     const cols: Array<Array<Post>> = Array.from({ length: numColumns }, () => []);
     recomendations?.items.forEach((item, index) => {
-      cols[index % numColumns].push(item);
+      cols[index % numColumns].push(item); 
     })
     return cols;
   }, [recomendations, numColumns])
@@ -70,12 +70,6 @@ export const Profile = () => {
     })
       .then(e => setRecomendations(e.data))
   }, [])
-
-
-
-
-
-
 
 
 
@@ -184,7 +178,7 @@ export const Profile = () => {
             <Subscriptions />
           </div>
           :
-          <div className={styles.recomendations} style={{ display: 'grid', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>
+          <div className={styles.recomendations} style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className={styles.column}>
                 {column.map((item, itemIndex) => {

@@ -10,6 +10,7 @@ import { DetailedPost } from "../../pages/detailedPost/DetailedPost"
 import { useEffect, useState } from "react"
 import { getUserThunk } from "../../features/authorization/getUserThunk"
 import { Profile as UserProfile } from "../../pages/profile copy/Profile"
+import Admin from "../../pages/admin/Admin"
 
 const mainRouter = createBrowserRouter([
     {
@@ -38,6 +39,36 @@ const mainRouter = createBrowserRouter([
     {
         path: "/test",
         element: <Test />
+    },
+    {
+        path: '*',
+        element: <Navigate to={'/'} />
+    }
+])
+
+const adminRouter = createBrowserRouter([
+    {
+        path: "/",
+        element: <Main />,
+        children: [
+            {
+                path: '/post/:id',
+                element: <DetailedPost />
+            },
+            {
+                path: '/user/:userId',
+                element: <UserProfile />
+            },
+            ...mainNavigation
+        ]
+    },
+    {
+        path: "/test",
+        element: <Test />
+    },
+    {
+        path: "/admin",
+        element: <Admin />
     },
     {
         path: '*',
@@ -98,7 +129,7 @@ export const RouterApp = () => {
 
     return (
         <>
-            {user.tokens.accessToken ? user.user?.role === UserRole.Admin ? <RouterProvider router={mainRouter} /> : <RouterProvider router={userRouter} /> : <RouterProvider router={mainRouter} />}
+            {user.tokens.accessToken ? user.user?.role === UserRole.Admin ? <RouterProvider router={adminRouter} /> : <RouterProvider router={userRouter} /> : <RouterProvider router={mainRouter} />}
         </>
     )
 }

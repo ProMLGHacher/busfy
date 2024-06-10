@@ -4,7 +4,7 @@ import { Recomendation } from "../Recomendation"
 
 export const ImageRecomendation = (props: RecomendationType) => {
     return (
-        <Recomendation id={props.id} categoryName={props.categoryName} hasEvaluated={props.hasEvaluated} urlFile={props.urlFile} description={props.description} downloadLink={props.urlFile}>
+        <Recomendation {...props}>
             <ImagePreview {...props} />
         </Recomendation>
     )

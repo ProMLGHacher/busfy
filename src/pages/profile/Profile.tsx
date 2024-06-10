@@ -22,7 +22,7 @@ export const Profile = () => {
 
 
   const user = useAppSelector(state => state.auth.user)
-  
+
   const { userId } = useParams()
 
 
@@ -55,7 +55,7 @@ export const Profile = () => {
   const columns = useMemo(() => {
     const cols: Array<Array<Post>> = Array.from({ length: numColumns }, () => []);
     recomendations?.items.forEach((item, index) => {
-      cols[index % numColumns].push(item); 
+      cols[index % numColumns].push(item);
     })
     return cols;
   }, [recomendations, numColumns])
@@ -105,12 +105,6 @@ export const Profile = () => {
 
   return (
     <div className={styles.profile}>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button onClick={logout}>
-          Logout
-        </Button>
-      </div>
-
       <div style={{ backgroundImage: `url(${user?.urlBackgroundImage})` }} className={styles.accountHeader}>
         {/* <label htmlFor="upload-photo">Browse...</label> */}
         <input type="file" accept='image/*' onChange={e => {
@@ -119,7 +113,7 @@ export const Profile = () => {
           formData.append('file', e.target.files[0])
           $api.post('/api/upload/profile-background', formData).then(_ => dispatch(getUserThunk()))
         }} name="photo" id="upload-photo" className={styles.coverUpload} />
-        <div className={styles.icon}> 
+        <div className={styles.icon}>
           {user?.urlIcon ? <img className={styles.avatar} src={user?.urlIcon} alt="" /> : <User className={classNames(styles.avatar, undefined, [styles.noavatar])} />}
           <input type="file" accept='image/*' onChange={e => {
             if (!e.target.files?.[0]) return
@@ -148,7 +142,7 @@ export const Profile = () => {
             <Button>Подписаться</Button>
           </div>
           :
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
             <Button disabled={editMode} onClick={() => { setEditMode(prev => !prev) }}>{editMode ? "Назад" : "Редактировать"}</Button>
             {editMode || <Link to={'/newPost'}><Button>Создать пост</Button></Link>}
             {editMode && <Button onClick={() => {
@@ -159,6 +153,9 @@ export const Profile = () => {
                 userTag: tag
               }))
             }}>Сохранить</Button>}
+            <Button onClick={logout}>
+              Выйти
+            </Button>
           </div>}
       </div>
 
@@ -174,7 +171,7 @@ export const Profile = () => {
             <p style={{ width: '50%', color: '#888' }}>Описание</p>
             <Input value={description} onChange={e => { setDescription(e.target.value) }} style={{ width: '50%', marginBottom: '20px' }} />
 
-
+            <p style={{ width: '100%', color: '#888', marginBottom: '10px' }}>Подписки</p>
             <Subscriptions />
           </div>
           :

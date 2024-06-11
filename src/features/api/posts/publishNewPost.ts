@@ -34,7 +34,9 @@ export const publishNewPost = async ({ description, file, subscriptionId, text, 
             }
         })
     } catch (error) {
-        alert('хуй там')
+        alert('ошибка')
+        console.error(error);
+        
         return false
     }
     return true

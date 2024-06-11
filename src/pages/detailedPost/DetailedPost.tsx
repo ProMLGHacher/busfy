@@ -9,7 +9,7 @@ import { ImageRecomendation } from '../../widgets/recomendations/imageRecomendat
 import ModelRecomendation from '../../widgets/recomendations/model3dRecomendation/ModelRecomendation'
 import { TextRecomendation } from '../../widgets/recomendations/textRecomendation/TextRecomendation'
 import { VideoRecomendation } from '../../widgets/recomendations/videoRecomendation/VideoRecomendation'
-import { Heart, HeartFilled, Plus, User } from '../../shared/consts/images'
+import { Heart, HeartFilled, User } from '../../shared/consts/images'
 import { Comment, getPostComments } from '../../features/api/getPostComments/getPostComments'
 import { $api } from '../../shared/api/api'
 import { getPostLikesCount } from '../../features/api/getPostLikesCount/getPostLikesCount'

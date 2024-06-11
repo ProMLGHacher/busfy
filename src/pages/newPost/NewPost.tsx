@@ -17,19 +17,27 @@ const NewPost = () => {
   const [category, setCategory] = useState("")
   const [subId, setSubId] = useState<string | undefined>()
 
-  const handleDubmit = () => {
+  const handleDubmit = async () => {
 
     if (!file && text.trim().length < 0) return
-    
-    
 
-    publishNewPost({
-      category: category,
-      description: description,
-      subscriptionId: subId,
-      file: text.trim().length > 0 ? undefined : file,
-      text: text.trim().length > 0 ? text : undefined
-    })
+
+
+    try {
+      publishNewPost({
+        category: category,
+        description: description,
+        subscriptionId: subId,
+        file: text.trim().length > 0 ? undefined : file,
+        text: text.trim().length > 0 ? text : undefined
+      })
+      setFile(undefined)
+      setText("")
+      setDescription("")
+    } catch (error) {
+      console.log(error)
+      alert('Ошибка')
+    }
   }
 
   const [contentCategories, setContentCategories] = useState<ContentCategory[]>()
@@ -42,6 +50,7 @@ const NewPost = () => {
       setCategory(e[0].name)
     })
   }, [])
+
 
   const fileUrl = useMemo(() => {
     if (!file) return
@@ -108,7 +117,7 @@ const NewPost = () => {
               WebkitAppearance: 'none',
               MozAppearance: 'none'
             }}>
-              <option value={undefined}>Публичный</option>
+            <option value={undefined}>Публичный</option>
             {mySubs?.map(e => <option value={e.id}>{e.type === SubType.Private ? "Приватный" : e.type === SubType.Public ? 'Публичный' : 'Единый'} на {e.countDays} дней за {e.price} рублей</option>)}
           </select>
         </div>

@@ -1,26 +1,25 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import styles from './Profile.module.scss'
-import { useAppDispatch, useAppSelector } from '../../app/store/storeHooks'
 import { Like, User, Users } from '../../shared/consts/images'
 import { Button } from '../../shared/ui/button/Button'
-import { getUserThunk } from '../../features/authorization/getUserThunk'
 import { classNames } from '../../shared/lib/classNames/classNames'
-import { Link, useParams } from 'react-router-dom'
-import { $api } from '../../shared/api/api'
-import { Input } from '../../shared/ui/input/Input'
-import { updateUserThunk } from '../../features/authorization/updateUserThunk'
+import { useParams } from 'react-router-dom'
+import { $api, $baseURL } from '../../shared/api/api'
 import { Post, PostType, RecomendationsResponse } from '../../features/api/posts/recomendations'
 import { AudioRecomendation } from '../../widgets/recomendations/audioRecomendation/AudioRecomendation'
 import { ImageRecomendation } from '../../widgets/recomendations/imageRecomendation/ImageRecomendation'
 import ModelRecomendation from '../../widgets/recomendations/model3dRecomendation/ModelRecomendation'
 import { TextRecomendation } from '../../widgets/recomendations/textRecomendation/TextRecomendation'
 import { VideoRecomendation } from '../../widgets/recomendations/videoRecomendation/VideoRecomendation'
-import { Subscriptions } from './components/Subscriptions'
 import { AccountStatus, UserRole } from '../../features/authorization/authSlice'
+import { useAppSelector } from '../../app/store/storeHooks'
+import axios from 'axios'
+import { Sub, SubType } from '../../features/types/Sub'
 
 export const Profile = () => {
 
   const { userId } = useParams()
+  const myId = useAppSelector(state => state.auth.user?.id)
 
   const [recomendations, setRecomendations] = useState<RecomendationsResponse>()
   const [numColumns, setNumColumns] = useState(4)
@@ -69,17 +68,60 @@ export const Profile = () => {
     "countLikes": number
   }>()
 
+  const [subs, setSubs] = useState<Sub[]>()
+
+  const [subId, setSubId] = useState<string>()
+
+  const checkSub = async () => {
+    subs?.forEach(async sub => {
+      const res = await $api.get('/api/subscription', {
+        params: {
+          subscriptionId: sub.id
+        }
+      })
+      if (res.status === 200) {
+        setSubId(sub.id)
+      }
+    })
+  }
 
   useEffect(() => {
     $api.get('/api/profile/' + userId).then(e => setUser(e.data))
-    $api.get<RecomendationsResponse>('/api/tape/creator', {
+    axios.get<RecomendationsResponse>($baseURL + '/api/tape/creator', {
       params: {
         count: 9999,
         userId: userId
       }
     })
       .then(e => setRecomendations(e.data))
+
+    $api.get<Sub[]>('/api/subscriptions-created', {
+      params: {
+        userId: userId
+      }
+    }).then(e => {setSubs(e.data); checkSub()})
+    
+
+
   }, [])
+
+  const subscribe = async () => {
+    await $api.post('/api/subscribe', undefined, {
+      params: {
+        subscriptionId: subs?.find(sub => sub.type === SubType.Public)?.id
+      }
+    })
+    setSubId(subs?.find(sub => sub.type === SubType.Public)?.id)
+  }
+
+  const unsubscribe = async () => {
+    await $api.post('/api/unsubscribe', undefined, {
+      params: {
+        subscriptionId: subId
+      }
+    })
+    setSubId(undefined)
+  }
 
   return (
     <div className={styles.profile}>
@@ -104,11 +146,11 @@ export const Profile = () => {
           </div>
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
-          <Button>Подписаться</Button>
+          <Button onClick={subId ? unsubscribe : subscribe} disabled={myId === userId} style={{ backgroundColor: subId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : subId ? 'Отписаться' : 'Подписаться'}</Button>
         </div>
       </div>
 
-      <div className={styles.recomendations} style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>
+      <div className={styles.recomendations} style={{ marginTop: '20px', display: 'grid', gap: '12px', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>
         {columns.map((column, columnIndex) => (
           <div key={columnIndex} className={styles.column}>
             {column.map((item, itemIndex) => {

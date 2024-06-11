@@ -20,12 +20,10 @@ export const Main = () => {
                     alignItems: 'center',
                     gap: '10px'
                 }}>
-                    <div style={{
-                        width: '50px',
-                        height: '50px',
-                        backgroundColor: 'red',
-                        borderRadius: '50%'
-                    }}></div>
+                    <img style={{
+                        width: '40px',
+                        height: '40px'
+                    }} src="/logo.svg" alt="logo" />
                     <h2>Busfy</h2>
                 </div>
                 <div className={styles.navigationItems}>

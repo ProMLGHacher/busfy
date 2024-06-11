@@ -4,7 +4,7 @@ import { TextPreview } from '../../preview/textPreview/TextPreview'
 
 export const TextRecomendation = (props: RecomendationType) => {
     return (
-        <Recomendation id={props.id} categoryName={props.categoryName} hasEvaluated={props.hasEvaluated} urlFile={props.urlFile} description={props.description} downloadLink={props.urlFile}>
+        <Recomendation {...props}>
             <TextPreview {...props} />
         </Recomendation>
     )

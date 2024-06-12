@@ -91,10 +91,10 @@ export const DetailedPost = () => {
               })
           }}>Отправить</Button>
         </div>
-        <div className={styles.comments}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} className={styles.comments}>
           {
             comments?.map(comment => <div style={{ display: 'flex', gap: '10px' }}>
-              {comment.profileBody.urlIcon ? <img style={{ width: '50px', height: '50px' }} src={comment.profileBody.urlIcon} alt="" /> : <User />}
+              {comment.profileBody.urlIcon ? <img style={{ width: '50px', height: '50px' }} src={comment.profileBody.urlIcon} alt="" /> : <User style={{ width: '50px', height: '50px' }} />}
               <div>
                 <p>{comment.profileBody.nickname}</p>
                 <p>{comment.comment}</p>

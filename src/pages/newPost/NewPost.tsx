@@ -118,7 +118,7 @@ const NewPost = () => {
               MozAppearance: 'none'
             }}>
             <option value={undefined}>Публичный</option>
-            {mySubs?.map(e => <option value={e.id}>{e.type === SubType.Private ? "Приватный" : e.type === SubType.Public ? 'Публичный' : 'Единый'} на {e.countDays} дней за {e.price} рублей</option>)}
+            {mySubs?.map(e => <option value={e.id}>{e.type === "Private" ? "Приватный" : e.type === "Public" ? 'Публичный' : 'Единый'} на {e.countDays} дней за {e.price} рублей</option>)}
           </select>
         </div>
       </div>

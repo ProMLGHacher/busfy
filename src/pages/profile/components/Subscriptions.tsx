@@ -18,7 +18,7 @@ export const Subscriptions = () => {
 
 
     const [price, setPrice] = useState("")
-    const [type, setType] = useState(SubType.Public)
+    const [type, setType] = useState("Public")
     const [countDays, setCountDays] = useState("")
 
     return (
@@ -32,9 +32,9 @@ export const Subscriptions = () => {
                     WebkitAppearance: 'none',
                     MozAppearance: 'none'
                 }}>
-                    <option value={SubType.Private}>Приватный</option>
-                    <option value={SubType.Public}>Публичный</option>
-                    <option value={SubType.Single}>Единичный</option>
+                    <option value="Private">Приватный</option>
+                    <option value="Public">Публичный</option>
+                    <option value="Single">Единичный</option>
                 </select>
                 <Input value={countDays} onChange={e => setCountDays(e.target.value)} placeholder="Количество дней" />
                 <Button onClick={async () => {
@@ -57,7 +57,7 @@ export const Subscriptions = () => {
                     alignItems: 'center'
                 }}>
                     <div>
-                        <p>{e.type === SubType.Private ? "Приватный" : e.type === SubType.Public ? 'Публичный' : 'Единый'} на {e.countDays} дней</p>
+                        <p>{e.type === "Private" ? "Приватный" : e.type === "Public" ? 'Публичный' : 'Единый'} на {e.countDays} дней</p>
                         <p>{e.price} рублей</p>
                     </div>
                     <Button style={{backgroundColor: 'red'}} onClick={async () => {

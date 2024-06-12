@@ -14,7 +14,7 @@ import { VideoRecomendation } from '../../widgets/recomendations/videoRecomendat
 import { AccountStatus, UserRole } from '../../features/authorization/authSlice'
 import { useAppSelector } from '../../app/store/storeHooks'
 import axios from 'axios'
-import { Sub, SubType } from '../../features/types/Sub'
+import { Sub } from '../../features/types/Sub'
 
 export const Profile = () => {
 
@@ -73,16 +73,16 @@ export const Profile = () => {
   const [subId, setSubId] = useState<string>()
 
   const checkSub = async () => {
-    subs?.forEach(async sub => {
-      const res = await $api.get('/api/subscription', {
-        params: {
-          subscriptionId: sub.id
-        }
-      })
-      if (res.status === 200) {
-        setSubId(sub.id)
+    const res = await $api.get<Sub[]>('/api/subscription', {
+      params: {
+        userId: userId
       }
     })
+    if (res.status === 200) {
+      console.log(res.data);
+      console.log(res.data.find(sub => sub.type === 'Public')?.subscriptionId);
+      setSubId(res.data.find(sub => sub.type === 'Public')?.subscriptionId)
+    }
   }
 
   useEffect(() => {
@@ -95,32 +95,31 @@ export const Profile = () => {
     })
       .then(e => setRecomendations(e.data))
 
+    checkSub()
+
     $api.get<Sub[]>('/api/subscriptions-created', {
       params: {
         userId: userId
       }
-    }).then(e => {setSubs(e.data); checkSub()})
-    
-
-
+    }).then(e => { console.log(e.data); setSubs(e.data) })
   }, [])
 
   const subscribe = async () => {
     await $api.post('/api/subscribe', undefined, {
       params: {
-        subscriptionId: subs?.find(sub => sub.type === SubType.Public)?.id
+        subscriptionId: subs?.find(sub => sub.type === 'Public')?.id
       }
     })
-    setSubId(subs?.find(sub => sub.type === SubType.Public)?.id)
+    setSubId(subs?.find(sub => sub.type === "Public")?.id)
   }
 
   const unsubscribe = async () => {
-    await $api.post('/api/unsubscribe', undefined, {
+    await $api.delete('/api/unsubscribe', {
       params: {
         subscriptionId: subId
       }
     })
-    setSubId(undefined)
+    checkSub()
   }
 
   return (
@@ -146,7 +145,7 @@ export const Profile = () => {
           </div>
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
-          <Button onClick={subId ? unsubscribe : subscribe} disabled={myId === userId} style={{ backgroundColor: subId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : subId ? 'Отписаться' : 'Подписаться'}</Button>
+          <Button onClick={myId === userId ? undefined : subId ? unsubscribe : subscribe} disabled={myId === userId} style={{ backgroundColor: subId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : subId ? 'Отписаться' : 'Подписаться'}</Button>
         </div>
       </div>
 

@@ -165,14 +165,16 @@ export const Profile = () => {
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
           <Button onClick={myId === userId ? undefined : follId ? unfollow : follow} disabled={myId === userId} style={{ backgroundColor: follId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : follId ? 'Отслеживаю' : 'Отслеживать'}</Button>
-          <div style={{ position: 'relative' }}>
-            <Button className={subId ? '' : styles.subButton} onClick={myId === userId ? undefined : subId ? unsub : () => { }} disabled={myId === userId} style={{ backgroundColor: subId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : subId ? 'Описаться' : 'Подписаться'}</Button>
-            <div className={styles.subs} style={{ position: 'absolute', zIndex: '9', paddingTop: '10px' }}>
-              {subs?.filter(e => e.type === 'Private').map(e => {
-                return <Button key={e.id} onClick={() => sub(e.id)}>{e.price}</Button>
-              })}
+          {
+            !!subs?.filter(e => e.type === 'Private').length && <div style={{ position: 'relative' }}>
+              <Button className={subId ? '' : styles.subButton} onClick={myId === userId ? undefined : subId ? unsub : () => { }} disabled={myId === userId} style={{ backgroundColor: subId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : subId ? 'Описаться' : 'Подписаться'}</Button>
+              <div className={styles.subs} style={{ position: 'absolute', zIndex: '9', paddingTop: '10px' }}>
+                {subs?.filter(e => e.type === 'Private').map(e => {
+                  return <Button key={e.id} onClick={() => sub(e.id)}>{e.price}</Button>
+                })}
+              </div>
             </div>
-          </div>
+          }
         </div>
       </div>
 

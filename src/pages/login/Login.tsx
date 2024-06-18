@@ -19,7 +19,7 @@ export const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(loginThunk({email: mail, password: password}))
+    dispatch(loginThunk({ email: mail, password: password }))
   }
 
   return (
@@ -28,8 +28,8 @@ export const Login = () => {
         <h1 className={styles.loginTitle}>Войти в аккаунт</h1>
         <p className={styles.loginDescription}>Войдите в аккаунт чтобы войти в приложение</p>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <Input style={{width: '100%'}} value={mail} onChange={(e) => setMail(e.target.value)} type="email" placeholder="Email" icon={<Mail />} />
-          <Input style={{width: '100%'}} value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Пароль" icon={<Lock />} />
+          <Input style={{ width: '100%' }} value={mail} onChange={(e) => setMail(e.target.value)} type="email" placeholder="Email" icon={<Mail />} />
+          <Input style={{ width: '100%' }} value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Пароль" icon={<Lock />} />
           <Button type="submit">
             {isLoading ? <Loader /> : 'Войти'}
             <Arrow />

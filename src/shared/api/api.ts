@@ -3,7 +3,7 @@ import { store } from "../../app/store/store";
 import { logOut, setTokens } from "../../features/authorization/authSlice";
 import { isAxiosError } from "axios";
 
-export const $baseURL = "http://82.97.249.229:8080"
+export const $baseURL = "https://busfy.ru:9000"
 
 export const $api = createAxiosDateTransformer({
     baseURL: $baseURL,

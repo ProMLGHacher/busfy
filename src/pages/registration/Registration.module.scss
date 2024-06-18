@@ -20,6 +20,11 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
 
     min-width: 500px;
+
+    @media screen and (max-width: 680px) {
+        min-width: 200px;
+        padding: 30px;
+    }
 }
 
 .codeForm {

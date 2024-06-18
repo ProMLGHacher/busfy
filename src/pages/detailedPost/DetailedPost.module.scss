@@ -2,6 +2,10 @@
     display: grid;
     grid-template-columns: 5fr 2fr;
     gap: 40px;
+
+    @media screen and (max-width: 680px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .similar {

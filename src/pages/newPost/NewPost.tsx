@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
 import styles from './NewPost.module.scss'
 import { ContentCategory, getContentCategories } from '../../features/api/contentCategory/getContentCategories'
 import { Button } from '../../shared/ui/button/Button'
@@ -6,6 +6,9 @@ import { Sub, SubType } from '../../features/types/Sub'
 import { $api } from '../../shared/api/api'
 import { useAppSelector } from '../../app/store/storeHooks'
 import { publishNewPost } from '../../features/api/posts/publishNewPost'
+import { AudioPreview } from '../../widgets/preview/audioPreview/AudioPreview'
+import { VideoPreview } from '../../widgets/preview/videoPreview/VideoPreview'
+import ModelPreview from '../../widgets/preview/model3dPreview/ModelPreview'
 
 const NewPost = () => {
 
@@ -73,9 +76,30 @@ const NewPost = () => {
         flexDirection: 'column',
         gap: '20px'
       }}>
-        {file?.type}
+        {
+          file?.type === 'image/jpeg' && <img src={fileUrl} alt="" />
+        }
+        {
+          file?.type === 'audio/mpeg' && <div style={{ zIndex: '1' }}>
+            <AudioPreview urlFile={fileUrl ?? ''} />
+          </div>
+        }
+        {
+          file?.type === 'video/mp4' && <div style={{ zIndex: '1' }}>
+            <VideoPreview urlFile={fileUrl ?? ''} />
+          </div>
+        }
+        {
+          file?.name.endsWith('.fbx') && (
+            <Suspense fallback={<div>Loading model...</div>}>
+              <div style={{ zIndex: '1' }}>
+                <ModelPreview urlFile={fileUrl ?? ''} />
+              </div>
+            </Suspense>
+          )
+        }
         <div style={{ position: 'relative', minHeight: '300px', borderRadius: '20px', overflow: 'hidden', border: '1px solid #888', transition: 'opacity .3s', opacity: text ? 0.2 : 1 }}>
-          {fileUrl && <img src={fileUrl} alt="" />}
+          {/* {fileUrl && <img src={fileUrl} alt="" />} */}
           <p style={{ textAlign: 'center' }}>Выберите файл</p>
           <input style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', opacity: '0' }} type="file" onChange={e => {
             setFile(e.target.files?.[0])

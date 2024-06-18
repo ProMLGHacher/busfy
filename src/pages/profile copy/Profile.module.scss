@@ -47,6 +47,7 @@
         width: 26px;
         height: 26px;
     }
+
     & .likeImage {
         width: 20px;
         height: 20px;
@@ -72,4 +73,17 @@
 
 .icon {
     position: relative;
+}
+
+.subs {
+    display: none;
+}
+
+.subButton:hover~.subs {
+    display: flex;
+}
+
+
+.subs:hover {
+    display: flex;
 }

@@ -45,7 +45,7 @@ export const Recomendation = (props: Post & { children: React.ReactNode }) => {
                 {props.children}
             </div>
             <h4>{props.profileCreator.nickname}</h4>
-            <p>{props.description}</p>
+            <p>{props.description?.slice(0, 110)}{props.description?.length && props.description.length > 110 && '...'}</p>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { Post as RecomendationType } from "../../../features/api/posts/recomenda
 
 export const ImagePreview = (props: RecomendationType) => {
     return (
-            <img src={props.urlFile || ''} alt={props.description || ''} />
+        <img src={props.urlFile || ''} alt={props.description || ''} />
     )
 }
 

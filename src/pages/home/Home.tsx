@@ -54,7 +54,10 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    getRecomendations(9999, 0, selectedCategory?.name).then((response) => setRecomendations(response))
+    getRecomendations(9999, 0, selectedCategory?.name).then((response) => {
+      response.items = response.items.sort(() => Math.random() - 0.5)
+      setRecomendations(response)
+    })
   }, [selectedCategory])
 
   return (
@@ -65,7 +68,7 @@ const Home = () => {
         })} onClick={() => {
           console.log(';oasdijfo;asd');
           setSelectedCategory(undefined)
-          
+
         }}>
           <p>Для тебя</p>
         </div>

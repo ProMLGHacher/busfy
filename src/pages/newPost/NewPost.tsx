@@ -77,10 +77,10 @@ const NewPost = () => {
         gap: '20px'
       }}>
         {
-          file?.type === 'image/jpeg' && <img src={fileUrl} alt="" />
+          (file?.type === 'image/jpeg' || file?.type === 'image/png' || file?.type === 'image/jpg') && <img src={fileUrl} alt="" />
         }
         {
-          file?.type === 'audio/mpeg' && <div style={{ zIndex: '1' }}>
+          (file?.type === 'audio/mpeg' || file?.type === 'audio/mp3') && <div style={{ zIndex: '1' }}>
             <AudioPreview urlFile={fileUrl ?? ''} />
           </div>
         }

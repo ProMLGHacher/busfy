@@ -70,6 +70,7 @@ export const Profile = () => {
 
   const [subs, setSubs] = useState<Sub[]>()
 
+  const [follId, setFollId] = useState<string>()
   const [subId, setSubId] = useState<string>()
 
   const checkSub = async () => {
@@ -79,9 +80,9 @@ export const Profile = () => {
       }
     })
     if (res.status === 200) {
-      console.log(res.data);
       console.log(res.data.find(sub => sub.type === 'Public')?.subscriptionId);
-      setSubId(res.data.find(sub => sub.type === 'Public')?.subscriptionId)
+      setFollId(res.data.find(sub => sub.type === 'Public')?.subscriptionId)
+      setSubId(res.data.find(sub => sub.type === 'Private')?.subscriptionId)
     }
   }
 
@@ -101,19 +102,37 @@ export const Profile = () => {
       params: {
         userId: userId
       }
-    }).then(e => { console.log(e.data); setSubs(e.data) })
+    }).then(e => { setSubs(e.data) })
   }, [])
 
-  const subscribe = async () => {
+  const follow = async () => {
     await $api.post('/api/subscribe', undefined, {
       params: {
         subscriptionId: subs?.find(sub => sub.type === 'Public')?.id
       }
     })
-    setSubId(subs?.find(sub => sub.type === "Public")?.id)
+    setFollId(subs?.find(sub => sub.type === "Public")?.id)
   }
 
-  const unsubscribe = async () => {
+  const unfollow = async () => {
+    await $api.delete('/api/unsubscribe', {
+      params: {
+        subscriptionId: follId
+      }
+    })
+    checkSub()
+  }
+
+  const sub = async (id: string) => {
+    await $api.post('/api/subscribe', undefined, {
+      params: {
+        subscriptionId: id
+      }
+    })
+    setSubId(id)
+  }
+
+  const unsub = async () => {
     await $api.delete('/api/unsubscribe', {
       params: {
         subscriptionId: subId
@@ -145,13 +164,21 @@ export const Profile = () => {
           </div>
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
-          <Button onClick={myId === userId ? undefined : subId ? unsubscribe : subscribe} disabled={myId === userId} style={{ backgroundColor: subId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : subId ? 'Отписаться' : 'Подписаться'}</Button>
+          <Button onClick={myId === userId ? undefined : follId ? unfollow : follow} disabled={myId === userId} style={{ backgroundColor: follId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : follId ? 'Отслеживаю' : 'Отслеживать'}</Button>
+          <div style={{ position: 'relative' }}>
+            <Button className={subId ? '' : styles.subButton} onClick={myId === userId ? undefined : subId ? unsub : () => { }} disabled={myId === userId} style={{ backgroundColor: subId ? 'gray' : '' }}>{myId === userId ? 'Это ваш профиль' : subId ? 'Описаться' : 'Подписаться'}</Button>
+            <div className={styles.subs} style={{ position: 'absolute', zIndex: '9', paddingTop: '10px' }}>
+              {subs?.filter(e => e.type === 'Private').map(e => {
+                return <Button key={e.id} onClick={() => sub(e.id)}>{e.price}</Button>
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
       <div className={styles.recomendations} style={{ marginTop: '20px', display: 'grid', gap: '12px', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>
         {columns.map((column, columnIndex) => (
-          <div key={columnIndex} className={styles.column}>
+          <div key={columnIndex} style={{ gap: '20px', display: 'flex', flexDirection: 'column' }} className={styles.column}>
             {column.map((item, itemIndex) => {
               if (item.type === PostType.Image) {
                 return <ImageRecomendation key={itemIndex} {...item} />

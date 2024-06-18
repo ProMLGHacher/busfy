@@ -4,7 +4,7 @@ import { FBXLoader } from 'three/examples/jsm/Addons.js'
 import { Post as RecomendationType } from "../../../features/api/posts/recomendations"
 import styles from './ModelPreciew.module.scss'
 
-const ModelPreview = (props: RecomendationType) => {
+const ModelPreview = (props: RecomendationType | { urlFile: string }) => {
 
     const fbx = useLoader(FBXLoader, props.urlFile || '')
 

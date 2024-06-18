@@ -1,7 +1,7 @@
 import styles from './AudioPreview.module.scss'
 import { Post as RecomendationType } from "../../../features/api/posts/recomendations"
 
-export const AudioPreview = (props: RecomendationType) => {
+export const AudioPreview = (props: RecomendationType | { urlFile: string }) => {
     return (
         <div className={styles.audio}>
             <audio src={props.urlFile || ''} controls>

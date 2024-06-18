@@ -1,7 +1,7 @@
 import styles from './VideoPreview.module.scss'
 import { Post as RecomendationType } from "../../../features/api/posts/recomendations"
 
-export const VideoPreview = (props: RecomendationType & { controls?: boolean }) => {
+export const VideoPreview = (props: RecomendationType & { controls?: boolean } | { urlFile: string, controls?: boolean }) => {
     return (
         <video style={{
             maxHeight: "600px"

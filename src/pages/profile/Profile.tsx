@@ -175,9 +175,9 @@ export const Profile = () => {
             <Subscriptions />
           </div>
           :
-          <div className={styles.recomendations} style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>
+          <div className={styles.recomendations} style={{ marginTop: '20px', display: 'grid', gap: '20px', gridTemplateColumns: `${[...Array(numColumns)].map(() => `${98 / numColumns}%`).join(' ')}` }}>
             {columns.map((column, columnIndex) => (
-              <div key={columnIndex} className={styles.column}>
+              <div key={columnIndex} style={{ gap: '20px', display: 'flex', flexDirection: 'column' }} className={styles.column}>
                 {column.map((item, itemIndex) => {
                   if (item.type === PostType.Image) {
                     return <ImageRecomendation key={itemIndex} {...item} />
